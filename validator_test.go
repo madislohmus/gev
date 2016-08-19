@@ -15,6 +15,7 @@ var (
 		`1234567890123456789012345678901234567890123456789012345678901234@iana.org`,
 		`"first\"last"@iana.org`,
 		`"first@last"@iana.org`,
+		`"john..doe"@example.com`,
 		`prettyandsimple@example.com`,
 		`very.common@example.com`,
 		`disposable.style.email.with+symbol@example.com`,
@@ -62,6 +63,7 @@ var (
 		`local@(comment)`,
 		`user@[IPv6:2001:db8::1]example.com`,
 		`user@[127.0.0.1](coimment)example.com`,
+		`“(),:;<>[\]@example.com`,
 	}
 )
 

@@ -15,7 +15,6 @@ func IsValid(input string) bool {
 	}
 	var ch rune
 	var local []rune
-	var domain []rune
 	state := 0
 	index := 0
 	size := 0
@@ -85,7 +84,6 @@ func IsValid(input string) bool {
 				}
 			}
 			if isAllowedDomain(ch) {
-				domain = append(domain, ch)
 				state = 3
 				break
 			}
@@ -96,23 +94,19 @@ func IsValid(input string) bool {
 				break
 			}
 			if isAllowedDomain(ch) {
-				domain = append(domain, ch)
 				break
 			}
 			if ch == '-' || ch == '.' {
-				domain = append(domain, ch)
 				state = 4
 				break
 			}
 			state = -1
 		case 4: // domain part
 			if isAllowedDomain(ch) {
-				domain = append(domain, ch)
 				state = 3
 				break
 			}
 			if ch == '-' {
-				domain = append(domain, ch)
 				break
 			}
 			state = -1
