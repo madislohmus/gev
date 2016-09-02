@@ -7,6 +7,7 @@ import (
 var (
 	validEmails = []string{
 		`first.last@iana.org`,
+		`first.last@123.iana.org`,
 		`(comment)first.last@iana.org`,
 		`()first.last@iana.org`,
 		`(comment)first.last(comment)@iana.org`,

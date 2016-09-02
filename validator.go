@@ -65,23 +65,12 @@ func IsValid(input string) bool {
 			}
 			if ch == '[' {
 				ip := readIPAddress(&input, &index, &size, runeCount, &ch)
-				if strings.Contains(ip, ":") {
-					// we have IPv6 address
-					if !strings.HasPrefix(ip, "IPv6:") {
-						// does not include IPv6: prefix
-						state = -1
-						break
-					}
-					ip = ip[5:]
-				}
-				if net.ParseIP(ip) != nil {
+				if isValidIP(ip) {
 					state = 8
 					break
-				} else {
-					// invalid ip address
-					state = -1
-					break
 				}
+				state = -1
+				break
 			}
 			if isAllowedDomain(ch) {
 				state = 3
@@ -190,3 +179,16 @@ func readIPAddress(input *string, index, size *int, runeCount int, ch *rune) str
 	}
 	return string(ip[:len(ip)-1])
 }
+
+func isValidIP(ip string) bool {
+	if strings.Contains(ip, ":") {
+		// we have IPv6 address
+		if !strings.HasPrefix(ip, "IPv6:") {
+			return false
+		}
+		ip = ip[5:]
+	}
+	return net.ParseIP(ip) != nil
+}
+
+func main() {}
